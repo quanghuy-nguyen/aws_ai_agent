@@ -25,10 +25,18 @@ MACHINE_NAMES = [
 
 load_dotenv()
 
+IS_USING_IMAGE_RUNTIME = os.getenv('IS_USING_IMAGE_RUNTIME', None)
+
+if IS_USING_IMAGE_RUNTIME is not None:
+    IMAGE_PATH = '/tmp/images/'
+    REPORT_PATH = '/tmp/reports/'
+else:
+    IMAGE_PATH = 'images/'
+    REPORT_PATH = 'reports/'
 
 
-
-def list_images_in_folder(folder_path='images/') -> str:
+def list_images_in_folder(folder_path=IMAGE_PATH) -> str:
+    print(f"Listing images in folder================== {folder_path}")
     if not os.path.isdir(folder_path):
         return f"Folder does not exist: {folder_path}"
 
@@ -158,7 +166,7 @@ def generate_full_report_from_processed_results(processed_results_str: str) -> s
 
 def save_report_to_txt(report_text: str, title: str = "Report") -> None:
     filename = f"{title.replace(' ', '_')}.txt"
-    folder = "reports"
+    folder = REPORT_PATH
     os.makedirs(folder, exist_ok=True)
     filepath = os.path.join(folder, filename)
 

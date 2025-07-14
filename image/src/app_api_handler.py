@@ -20,10 +20,20 @@ agent_executor = get_agent_executor(memory=memory)
 app = FastAPI()
 handler = Mangum(app)
 
-UPLOAD_FOLDER = Path("images")
+IS_USING_IMAGE_RUNTIME = None
+IS_USING_IMAGE_RUNTIME = os.getenv('IS_USING_IMAGE_RUNTIME', None)
+
+if IS_USING_IMAGE_RUNTIME is not None:
+    IMAGE_PATH = '/tmp/images/'
+    REPORT_PATH = '/tmp/reports/'
+else:
+    IMAGE_PATH = 'images/'
+    REPORT_PATH = 'reports/'
+
+UPLOAD_FOLDER = Path(IMAGE_PATH)
 UPLOAD_FOLDER.mkdir(exist_ok=True)
 
-REPORT_FOLDER = Path("reports")
+REPORT_FOLDER = Path(REPORT_PATH)
 REPORT_FOLDER.mkdir(exist_ok=True)
 
 
