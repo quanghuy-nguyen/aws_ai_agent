@@ -89,18 +89,6 @@ def download_latest_report():
         media_type="text/plain"
     )
 
-@app.on_event("shutdown")
-def shutdown_event():
-    deleted = 0
-    for path in UPLOAD_FOLDER.iterdir():
-        if path.is_file():
-            try:
-                path.unlink()
-                deleted += 1
-            except:
-                pass
-    print(f"Cleaned up {deleted} image(s) from 'images/' folder on shutdown.")
-
 
 # === Chạy local ===
 if __name__ == "__main__":

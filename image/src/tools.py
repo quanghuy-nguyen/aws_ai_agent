@@ -25,6 +25,7 @@ MACHINE_NAMES = [
 
 load_dotenv()
 
+IS_USING_IMAGE_RUNTIME = None
 IS_USING_IMAGE_RUNTIME = os.getenv('IS_USING_IMAGE_RUNTIME', None)
 
 if IS_USING_IMAGE_RUNTIME is not None:
