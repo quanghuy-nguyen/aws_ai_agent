@@ -75,7 +75,7 @@ Report_ai_agent/
 4. **Build Docker Image**:
    Ensure the Docker daemon is running, and build the image for the Lambda function:
    ```bash
-   docker build -t agent-api-image ../image
+   docker build --platform linux/amd64 -t ai_agent_app .
    ```
 
 5. **Deploy with AWS CDK**:
