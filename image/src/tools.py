@@ -69,8 +69,6 @@ def create_ocr_result(image_path):
 
 
 def extract_count_from_ocr_result(data):
-    import re
-
     lines = data["ParsedResults"][0]["TextOverlay"]["Lines"]
 
     # Find the line name that contains "#"
