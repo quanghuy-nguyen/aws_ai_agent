@@ -12,7 +12,9 @@ This project implements an AI-powered inspection system for manufacturing proces
 - **API Endpoints**: FastAPI endpoints for uploading images, chatting with the AI agent, and downloading reports.
 
 ## Project Structure
+```text
 Report_ai_agent/
+│
 ├── agent-cdk-infra/
 │
 ├── image/
@@ -23,6 +25,7 @@ Report_ai_agent/
 │       ├── ai_agent.py
 │       ├── app_api_handler.py
 │       └── tools.py
+```
 
 
 ## Prerequisites
