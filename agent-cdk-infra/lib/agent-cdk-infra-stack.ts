@@ -24,7 +24,7 @@ export class AgentCdkInfraStack extends cdk.Stack {
       code: apiImageCode,
       architecture: Architecture.X86_64,
       memorySize: 512,
-      timeout: cdk.Duration.seconds(60),
+      timeout: cdk.Duration.seconds(120),
     });
 
 

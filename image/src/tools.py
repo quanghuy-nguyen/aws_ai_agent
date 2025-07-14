@@ -122,21 +122,23 @@ def process_multiple_images(image_paths_str: str) -> str:
                 "count_values": [str(e)]
             })
 
-    result_text = ""
-    for res in all_results:
-        result_text += f"Line {res['line']}:\n"
-        result_text += f"    Count values: {res['count_values']}\n\n"
-
-    return result_text.strip()
-
-
-def compare_count_values_to_reference(results_str: str) -> str:
     try:
-        pattern = r"Line\s+([\d\s\-]+):\s*Count values:\s*\[([^\]]+)\]"
-        results = [{"line": line.strip(), "count_values": [int(x) for x in vals.split(",")]} 
-                    for line, vals in re.findall(pattern, results_str)]
+        json_str = json.dumps(all_results)
+        print("[DEBUG] Returning JSON string from process_multiple_images")
+        return json_str
     except Exception as e:
-        return f"Error reading Json or text: {e}"
+        return f"Error creating JSON: {e}"
+
+
+
+def compare_count_values_to_reference(results_json: str) -> str:
+    try:
+        results = json.loads(results_json)
+    except Exception as e:
+        return f"❌ Error parsing JSON: {e}"
+    
+    if not isinstance(results, list):
+        return "❌ Invalid format: expected a list of line data."
 
     report = []
     for result in results:
@@ -148,8 +150,8 @@ def compare_count_values_to_reference(results_str: str) -> str:
             symbol = "Good: " if count <= ref else "NG: "
             compare_sign = "≤" if count <= ref else ">"
             report.append(f"  {symbol} {name}: {count} {compare_sign} {ref}")
-        report.append("")  
-
+        report.append("")
+    print("============= Comparison Generated =============: ", "\n".join(report))
     return "\n".join(report)
 
 
@@ -162,7 +164,10 @@ def generate_full_report_from_processed_results(processed_results_str: str) -> s
     report_title = f"Inspection Report - {today}"
     save_report_to_txt(full_report, title=report_title)
 
-    return full_report
+    return {
+        "report_title": report_title,
+        "report_content": full_report
+    }
 
 
 def save_report_to_txt(report_text: str, title: str = "Report") -> None:
