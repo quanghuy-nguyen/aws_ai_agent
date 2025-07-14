@@ -51,8 +51,8 @@ Report_ai_agent/
 ## Setup Instructions
 1. **Clone the Repository**:
    ```bash
-   git clone <repository-url>
-   cd <repository-directory>
+   git clone https://github.com/quanghuy-nguyen/aws_ai_agent
+   cd aws_ai_agent
    ```
 
 2. **Install Dependencies**:
