@@ -133,10 +133,10 @@ def compare_count_values_to_reference(results_json: str) -> str:
     try:
         results = json.loads(results_json)
     except Exception as e:
-        return f"❌ Error parsing JSON: {e}"
+        return f"Error parsing JSON: {e}"
     
     if not isinstance(results, list):
-        return "❌ Invalid format: expected a list of line data."
+        return "Invalid format: expected a list of line data."
 
     report = []
     for result in results:
