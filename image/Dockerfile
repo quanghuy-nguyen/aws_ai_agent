@@ -13,3 +13,4 @@ EXPOSE 8000
 
 # Copy all files in ./src
 COPY src/* ${LAMBDA_TASK_ROOT}
+COPY .env/ ${LAMBDA_TASK_ROOT}

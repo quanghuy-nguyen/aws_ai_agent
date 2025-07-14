@@ -1,3 +1,4 @@
+import os
 from dotenv import load_dotenv
 from langchain import hub
 from langchain.agents import AgentExecutor, create_structured_chat_agent
@@ -59,7 +60,7 @@ tools = [
 
 prompt = hub.pull("hwchase17/structured-chat-agent")
 
-llm = ChatOpenAI(model="gpt-4o")
+llm = ChatOpenAI(model="gpt-4o", api_key=os.getenv("OPENAI_API_KEY"))
 
 agent = create_structured_chat_agent(llm=llm, tools=tools, prompt=prompt)
 
