@@ -37,12 +37,16 @@ Report_ai_agent/
   - `aws-cdk-lib`
   - `langchain`
   - `langchain-openai`
+  - `langchain-community`
+  - `langchain-core`
   - `fastapi`
   - `mangum`
   - `uvicorn`
   - `pydantic`
   - `requests`
   - `python-dotenv`
+  - `python-multipart`
+
 - **Environment Variables**:
   - `OPENAI_API_KEY`: API key for OpenAI.
   - `OCR_SPACE_API_KEY`: API key for OCR.Space.
